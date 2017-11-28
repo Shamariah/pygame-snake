@@ -1,7 +1,9 @@
 '''
 Snake game.
-Authors:
-<insert the names of your teammates here>
+Authors: Shamariah Walker
+Yaminah Russel
+Darian Trusty
+
 '''
 
 import pygame
