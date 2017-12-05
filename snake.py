@@ -1,7 +1,7 @@
 '''
 Snake game.
 Authors: Shamariah Walker
-Yaminah Russel
+Yaminah Russell
 Darian Trusty
 
 '''
