@@ -72,22 +72,30 @@ def snake_ate_food(snake, food):
     food - 2-tuple representing the position in the grid of the food
     This function should return True if the head of the snake is in the same position as food.
     """
+    if snake[0] == food :
+        return True
     return False
-#COME BACK AND FINISH
+
 def snake_ran_out_of_bounds(snake):
     """Returns whether the snake has ran off one of the four edges of the grid.
     snake - list of 2-tuples representing the positions of each snake segment
     Note that the grid is GRID_WIDTH cells wide and GRID_HEIGHT cells high.
     """
-    
+    if snake[0][0] < 0 or snake[0][0] > 29:
+        return True
+    elif snake[0][1] < 0 or snake[0][1] >29:
+        return True
     return False
-
+    
 def snake_intersected_body(snake):
     """Returns whether the snake has ran into itself.
     snake - list of 2-tuples representing the positions of each snake segment
     The snake ran into itself if the position of the head is the same as the position
     of any of its body segments.
     """
+    for i in range(1, len(snake)):
+        if snake[0] == snake[i]:
+            return True
     return False
 
 def get_score(snake):
@@ -96,15 +104,16 @@ def get_score(snake):
     The user earns 10 points for each of the segments in the snake.
     For example, if the snake has 25 segments, the score is 250.
     """
-    return 0
-
+    return len(snake) * 10
+    
 def get_game_over_text(score):
     """Returns the text to draw on the screen after the game is over.
     This text should contain 'Game Over' as well as the score.
     score - integer representing the current score of the game.
     """
-    return 'Game Over.'
-
+    
+    return 'Game Over. Score: ' + str(score)
+    
 def get_snake_speed(snake):
     """Return the number of cells the snake should travel in one second.
     snake - list of 2-tuples representing the positions of each snake segment
@@ -112,7 +121,7 @@ def get_snake_speed(snake):
     the speed of the game should increase (by how much is up to you).
     """
     return 5
-
+    #SOLVE ME
 def move_snake(snake, direction, food):
     """Moves the snake one space in the direction specified and returns whether food was eaten.
     The snake moves by removing the last segment and added a new head to the beginning of the snake list.
