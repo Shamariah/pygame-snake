@@ -1,7 +1,7 @@
 '''
 Snake game.
 Authors: Shamariah Walker
-Yaminah Russell
+Yaminah Russel
 Darian Trusty
 
 '''
@@ -46,14 +46,16 @@ def get_direction(previous_direction, event_key):
     event_key - the event that the user pressed; one of https://www.pygame.org/docs/ref/key.html
     If event_key does not correspond with any of the arrows keys, return previous_direction.
     """
-    if event_key == pygame.K_LEFT:
+    if event_key == pygame.K_LEFT and previous_direction != DIRECTION_RIGHT:
         return DIRECTION_LEFT
-    elif event_key == pygame.K_UP:
+    elif event_key == pygame.K_UP and previous_direction != DIRECTION_DOWN:
         return DIRECTION_UP
-    if event_key == pygame.K_DOWN:
+    elif event_key == pygame.K_DOWN and previous_direction != DIRECTION_UP:
         return DIRECTION_DOWN
-    elif event_key == pygame.K_RIGHT:
+    elif event_key == pygame.K_RIGHT and previous_direction != DIRECTION_LEFT:
         return DIRECTION_RIGHT
+    else:
+        return previous_direction
     return previous_direction
 
 def create_food_position():
@@ -120,8 +122,15 @@ def get_snake_speed(snake):
     The speed at the beginning of the game should be 5. Once the snake has eaten 10 pieces of food,
     the speed of the game should increase (by how much is up to you).
     """
+    holder = 10
+    speed = 8
+    for body_count in range(len(snake)):
+        if body_count == holder:
+            holder += 10
+            speed += 2
+            return speed
     return 5
-    #SOLVE ME
+        
 def move_snake(snake, direction, food):
     """Moves the snake one space in the direction specified and returns whether food was eaten.
     The snake moves by removing the last segment and added a new head to the beginning of the snake list.
@@ -276,3 +285,4 @@ def start_game():
 
 # Start the snake game.
 start_game()
+
